@@ -7,7 +7,6 @@ import authConfig from "./../config/auth.json";
 
 const router = express.Router();
 const authController = router;
-const hostURL = process.env.HOSTURL as string;
 const userService = new UserService();
 
 router.post("/register", async (req, res) => {
