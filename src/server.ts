@@ -10,6 +10,6 @@ app.use(cors());
 
 app.use("/auth", authController);
 
-app.listen(process.env.PORT, () => {
+app.listen(() => {
   console.log("Server is running");
 });
