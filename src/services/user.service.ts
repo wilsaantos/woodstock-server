@@ -1,7 +1,7 @@
 import { prismaClient } from "../const/prisma";
 import { User } from "../models/user";
 export class UserService {
-  public async findById(userId: number): Promise<User | null> {
+  public async findById(userId: string): Promise<User | null> {
     const user: User | null = await prismaClient.user.findUnique({
       where: { id: userId },
     });
