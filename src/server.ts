@@ -7,9 +7,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+const port = process.env.PORT || "3000";
 
 app.use("/auth", authController);
 
-app.listen(() => {
+app.listen(parseInt(port), () => {
   console.log("Server is running");
 });
