@@ -34,7 +34,7 @@ model Customer {
   name           String
   email          String
   phoneNumber    String
-  documentNumber String
+  documentNumber String   @unique
   createdAt      DateTime @default(now())
   createdBy      String   @default("system")
   updatedAt      DateTime @default(now()) @updatedAt
