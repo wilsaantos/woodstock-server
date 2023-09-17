@@ -12,10 +12,7 @@ const customerService = new CustomerService();
 router.post("", async (req, res) => {
   const body = req.body;
   const token = req.headers.authorization?.split(" ")[1] || "";
-  console.log(token);
-
   const isVerified = token ? jwt.verify(token, authConfig.secret) : false;
-  console.log(isVerified);
 
   if (isVerified) {
     try {
@@ -35,6 +32,28 @@ router.post("", async (req, res) => {
       console.log(err);
       return res.status(400).send({
         error: "Falha no Cadastro",
+      });
+    }
+  } else {
+    return res.status(400).send({
+      error: "Token Inválido",
+    });
+  }
+});
+
+router.get("/findAll", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1] || "";
+  console.log(token);
+  const isVerified = token ? jwt.verify(token, authConfig.secret) : false;
+  console.log(isVerified);
+
+  if (isVerified) {
+    try {
+      const customers = await customerService.findAll();
+      return res.status(200).send(customers);
+    } catch (err) {
+      return res.status(400).send({
+        error: "Falha ao Buscar Clientes",
       });
     }
   } else {

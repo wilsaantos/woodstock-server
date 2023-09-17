@@ -34,4 +34,9 @@ export class CustomerService {
     });
     return customer;
   }
+
+  async findAll(): Promise<Customer[]> {
+    const customers: Customer[] = await prismaClient.customer.findMany();
+    return customers;
+  }
 }
